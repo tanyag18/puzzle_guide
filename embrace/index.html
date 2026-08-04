@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Paheli · Embrace — Puzzle Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+  :root{--choc:#573425;--cream:#F5F0E8;--orange:#C4651A;--card:#FBF8F3;}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;background:var(--choc);color:var(--cream);
+    font-family:'Georgia',ui-serif,serif;overscroll-behavior:none;}
+  .wrap{max-width:520px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;}
+  header{padding:18px 20px 6px;text-align:center;}
+  header .kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--orange);opacity:.9;}
+  header h1{margin:4px 0 2px;font-size:22px;font-weight:600;}
+  header .sub{font-size:12px;opacity:.7;font-style:italic;}
+  .hint{margin:2px 20px 6px;text-align:center;color:var(--cream);
+    font-family:'Pinyon Script',cursive;font-size:32px;line-height:1.02;
+    min-height:74px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;}
+  .hint.ink-out{animation:inkFade .34s ease-in forwards;}
+  @keyframes inkFade{40%{opacity:.6;}100%{opacity:0;filter:blur(7px);transform:translateY(-26px) scale(.97);}}
+  .hint .w{display:inline-block;margin:0 .12em;opacity:0;filter:blur(6px);animation:wordIn .5s ease forwards;}
+  @keyframes wordIn{0%{opacity:0;filter:blur(6px);transform:translateY(-5px) scale(1.15);}100%{opacity:1;filter:blur(0);transform:translateY(0) scale(1);}}
+  .stage{position:relative;margin:6px 16px 0;border-radius:16px;overflow:hidden;
+    aspect-ratio:1/1;background:#000;box-shadow:0 10px 30px rgba(0,0,0,.4);touch-action:none;cursor:ns-resize;}
+  .stage svg{position:absolute;inset:0;width:100%;height:100%;display:block;}
+  #artLayer{z-index:1;}
+  #cutLayer{z-index:2;opacity:0;transition:opacity .08s linear;}
+  .controls{padding:16px 22px 8px;}
+  .labels{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-bottom:6px;}
+  input[type=range]{-webkit-appearance:none;width:100%;height:34px;background:transparent;}
+  input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:6px;background:linear-gradient(90deg,var(--orange),var(--cream));}
+  input[type=range]::-moz-range-track{height:6px;border-radius:6px;background:linear-gradient(90deg,var(--orange),var(--cream));}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;margin-top:-11px;width:28px;height:28px;border-radius:50%;background:var(--card);border:3px solid var(--orange);box-shadow:0 2px 6px rgba(0,0,0,.4);cursor:pointer;}
+  input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--card);border:3px solid var(--orange);cursor:pointer;}
+  .pct{text-align:center;font-size:12px;opacity:.7;margin-top:2px;}
+  .row{display:flex;gap:10px;padding:8px 22px 4px;}
+  .row button{flex:1;padding:11px;border-radius:10px;border:1px solid rgba(245,240,232,.25);background:transparent;color:var(--cream);font-family:inherit;font-size:13px;cursor:pointer;}
+  .row button:active{background:rgba(245,240,232,.12);}
+  .meta{padding:14px 22px 26px;font-size:12px;opacity:.6;text-align:center;line-height:1.6;}
+  .meta b{color:var(--orange);font-weight:600;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">पहेली · Paheli</div>
+    <h1>Your Puzzle Guide</h1>
+    <div class="sub">Embrace · 143 pieces · Arti Vohra</div>
+  </header>
+
+  <div class="hint" id="hint">Mischief managed.</div>
+
+  <div class="stage" id="stage">
+    <!-- FINISHED ARTWORK — replace this whole SVG with the real puzzle art -->
+    <svg id="artLayer" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+<rect width="400" height="400" fill="#16357f"/>
+<g fill="#F6C544"><circle cx="150" cy="110" r="26"/><circle cx="188" cy="140" r="26"/><circle cx="176" cy="185" r="26"/><circle cx="128" cy="188" r="26"/><circle cx="112" cy="140" r="26"/></g>
+<circle cx="150" cy="150" r="16" fill="#C4651A"/>
+<g fill="#E8622A"><circle cx="285" cy="235" r="40"/><circle cx="70" cy="300" r="34"/></g>
+<g fill="#2FA39B"><circle cx="300" cy="150" r="20"/><circle cx="330" cy="300" r="26"/></g>
+<g stroke="#fff" stroke-width="3" fill="none" opacity=".85"><path d="M250 70 q10 -8 20 0 q10 -8 20 0"/><path d="M300 100 q8 -6 16 0 q8 -6 16 0"/></g>
+<path d="M40 400 q60 -40 120 -10 t180 0 V400 Z" fill="#7B4BC4" opacity=".9"/>
+    </svg>
+    <!-- CUT PATTERN — replace this whole SVG with your real cut-pattern SVG (lines on transparent) -->
+    <svg id="cutLayer" viewBox="0 0 400 400" preserveAspectRatio="none">
+      <rect width="400" height="400" fill="rgba(20,10,4,0.16)"/>
+      <path fill="none" stroke="#FBF8F3" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"
+            style="filter:drop-shadow(0 0 1px rgba(0,0,0,.6))" d="M0 0 H400 V400 H0 Z M0 30.8 L13.3 30.8 A4.9 4.9 0 0 1 23.1 30.8 L36.4 30.8 L49.6 30.8 A4.9 4.9 0 0 0 59.5 30.8 L72.7 30.8 L86.0 30.8 A4.9 4.9 0 0 1 95.8 30.8 L109.1 30.8 L122.3 30.8 A4.9 4.9 0 0 0 132.2 30.8 L145.5 30.8 L158.7 30.8 A4.9 4.9 0 0 1 168.6 30.8 L181.8 30.8 L195.1 30.8 A4.9 4.9 0 0 0 204.9 30.8 L218.2 30.8 L231.4 30.8 A4.9 4.9 0 0 1 241.3 30.8 L254.5 30.8 L267.8 30.8 A4.9 4.9 0 0 0 277.7 30.8 L290.9 30.8 L304.2 30.8 A4.9 4.9 0 0 1 314.0 30.8 L327.3 30.8 L340.5 30.8 A4.9 4.9 0 0 0 350.4 30.8 L363.6 30.8 L376.9 30.8 A4.9 4.9 0 0 1 386.7 30.8 L400.0 30.8 M0 61.5 L13.3 61.5 A4.9 4.9 0 0 0 23.1 61.5 L36.4 61.5 L49.6 61.5 A4.9 4.9 0 0 1 59.5 61.5 L72.7 61.5 L86.0 61.5 A4.9 4.9 0 0 0 95.8 61.5 L109.1 61.5 L122.3 61.5 A4.9 4.9 0 0 1 132.2 61.5 L145.5 61.5 L158.7 61.5 A4.9 4.9 0 0 0 168.6 61.5 L181.8 61.5 L195.1 61.5 A4.9 4.9 0 0 1 204.9 61.5 L218.2 61.5 L231.4 61.5 A4.9 4.9 0 0 0 241.3 61.5 L254.5 61.5 L267.8 61.5 A4.9 4.9 0 0 1 277.7 61.5 L290.9 61.5 L304.2 61.5 A4.9 4.9 0 0 0 314.0 61.5 L327.3 61.5 L340.5 61.5 A4.9 4.9 0 0 1 350.4 61.5 L363.6 61.5 L376.9 61.5 A4.9 4.9 0 0 0 386.7 61.5 L400.0 61.5 M0 92.3 L13.3 92.3 A4.9 4.9 0 0 1 23.1 92.3 L36.4 92.3 L49.6 92.3 A4.9 4.9 0 0 0 59.5 92.3 L72.7 92.3 L86.0 92.3 A4.9 4.9 0 0 1 95.8 92.3 L109.1 92.3 L122.3 92.3 A4.9 4.9 0 0 0 132.2 92.3 L145.5 92.3 L158.7 92.3 A4.9 4.9 0 0 1 168.6 92.3 L181.8 92.3 L195.1 92.3 A4.9 4.9 0 0 0 204.9 92.3 L218.2 92.3 L231.4 92.3 A4.9 4.9 0 0 1 241.3 92.3 L254.5 92.3 L267.8 92.3 A4.9 4.9 0 0 0 277.7 92.3 L290.9 92.3 L304.2 92.3 A4.9 4.9 0 0 1 314.0 92.3 L327.3 92.3 L340.5 92.3 A4.9 4.9 0 0 0 350.4 92.3 L363.6 92.3 L376.9 92.3 A4.9 4.9 0 0 1 386.7 92.3 L400.0 92.3 M0 123.1 L13.3 123.1 A4.9 4.9 0 0 0 23.1 123.1 L36.4 123.1 L49.6 123.1 A4.9 4.9 0 0 1 59.5 123.1 L72.7 123.1 L86.0 123.1 A4.9 4.9 0 0 0 95.8 123.1 L109.1 123.1 L122.3 123.1 A4.9 4.9 0 0 1 132.2 123.1 L145.5 123.1 L158.7 123.1 A4.9 4.9 0 0 0 168.6 123.1 L181.8 123.1 L195.1 123.1 A4.9 4.9 0 0 1 204.9 123.1 L218.2 123.1 L231.4 123.1 A4.9 4.9 0 0 0 241.3 123.1 L254.5 123.1 L267.8 123.1 A4.9 4.9 0 0 1 277.7 123.1 L290.9 123.1 L304.2 123.1 A4.9 4.9 0 0 0 314.0 123.1 L327.3 123.1 L340.5 123.1 A4.9 4.9 0 0 1 350.4 123.1 L363.6 123.1 L376.9 123.1 A4.9 4.9 0 0 0 386.7 123.1 L400.0 123.1 M0 153.8 L13.3 153.8 A4.9 4.9 0 0 1 23.1 153.8 L36.4 153.8 L49.6 153.8 A4.9 4.9 0 0 0 59.5 153.8 L72.7 153.8 L86.0 153.8 A4.9 4.9 0 0 1 95.8 153.8 L109.1 153.8 L122.3 153.8 A4.9 4.9 0 0 0 132.2 153.8 L145.5 153.8 L158.7 153.8 A4.9 4.9 0 0 1 168.6 153.8 L181.8 153.8 L195.1 153.8 A4.9 4.9 0 0 0 204.9 153.8 L218.2 153.8 L231.4 153.8 A4.9 4.9 0 0 1 241.3 153.8 L254.5 153.8 L267.8 153.8 A4.9 4.9 0 0 0 277.7 153.8 L290.9 153.8 L304.2 153.8 A4.9 4.9 0 0 1 314.0 153.8 L327.3 153.8 L340.5 153.8 A4.9 4.9 0 0 0 350.4 153.8 L363.6 153.8 L376.9 153.8 A4.9 4.9 0 0 1 386.7 153.8 L400.0 153.8 M0 184.6 L13.3 184.6 A4.9 4.9 0 0 0 23.1 184.6 L36.4 184.6 L49.6 184.6 A4.9 4.9 0 0 1 59.5 184.6 L72.7 184.6 L86.0 184.6 A4.9 4.9 0 0 0 95.8 184.6 L109.1 184.6 L122.3 184.6 A4.9 4.9 0 0 1 132.2 184.6 L145.5 184.6 L158.7 184.6 A4.9 4.9 0 0 0 168.6 184.6 L181.8 184.6 L195.1 184.6 A4.9 4.9 0 0 1 204.9 184.6 L218.2 184.6 L231.4 184.6 A4.9 4.9 0 0 0 241.3 184.6 L254.5 184.6 L267.8 184.6 A4.9 4.9 0 0 1 277.7 184.6 L290.9 184.6 L304.2 184.6 A4.9 4.9 0 0 0 314.0 184.6 L327.3 184.6 L340.5 184.6 A4.9 4.9 0 0 1 350.4 184.6 L363.6 184.6 L376.9 184.6 A4.9 4.9 0 0 0 386.7 184.6 L400.0 184.6 M0 215.4 L13.3 215.4 A4.9 4.9 0 0 1 23.1 215.4 L36.4 215.4 L49.6 215.4 A4.9 4.9 0 0 0 59.5 215.4 L72.7 215.4 L86.0 215.4 A4.9 4.9 0 0 1 95.8 215.4 L109.1 215.4 L122.3 215.4 A4.9 4.9 0 0 0 132.2 215.4 L145.5 215.4 L158.7 215.4 A4.9 4.9 0 0 1 168.6 215.4 L181.8 215.4 L195.1 215.4 A4.9 4.9 0 0 0 204.9 215.4 L218.2 215.4 L231.4 215.4 A4.9 4.9 0 0 1 241.3 215.4 L254.5 215.4 L267.8 215.4 A4.9 4.9 0 0 0 277.7 215.4 L290.9 215.4 L304.2 215.4 A4.9 4.9 0 0 1 314.0 215.4 L327.3 215.4 L340.5 215.4 A4.9 4.9 0 0 0 350.4 215.4 L363.6 215.4 L376.9 215.4 A4.9 4.9 0 0 1 386.7 215.4 L400.0 215.4 M0 246.2 L13.3 246.2 A4.9 4.9 0 0 0 23.1 246.2 L36.4 246.2 L49.6 246.2 A4.9 4.9 0 0 1 59.5 246.2 L72.7 246.2 L86.0 246.2 A4.9 4.9 0 0 0 95.8 246.2 L109.1 246.2 L122.3 246.2 A4.9 4.9 0 0 1 132.2 246.2 L145.5 246.2 L158.7 246.2 A4.9 4.9 0 0 0 168.6 246.2 L181.8 246.2 L195.1 246.2 A4.9 4.9 0 0 1 204.9 246.2 L218.2 246.2 L231.4 246.2 A4.9 4.9 0 0 0 241.3 246.2 L254.5 246.2 L267.8 246.2 A4.9 4.9 0 0 1 277.7 246.2 L290.9 246.2 L304.2 246.2 A4.9 4.9 0 0 0 314.0 246.2 L327.3 246.2 L340.5 246.2 A4.9 4.9 0 0 1 350.4 246.2 L363.6 246.2 L376.9 246.2 A4.9 4.9 0 0 0 386.7 246.2 L400.0 246.2 M0 276.9 L13.3 276.9 A4.9 4.9 0 0 1 23.1 276.9 L36.4 276.9 L49.6 276.9 A4.9 4.9 0 0 0 59.5 276.9 L72.7 276.9 L86.0 276.9 A4.9 4.9 0 0 1 95.8 276.9 L109.1 276.9 L122.3 276.9 A4.9 4.9 0 0 0 132.2 276.9 L145.5 276.9 L158.7 276.9 A4.9 4.9 0 0 1 168.6 276.9 L181.8 276.9 L195.1 276.9 A4.9 4.9 0 0 0 204.9 276.9 L218.2 276.9 L231.4 276.9 A4.9 4.9 0 0 1 241.3 276.9 L254.5 276.9 L267.8 276.9 A4.9 4.9 0 0 0 277.7 276.9 L290.9 276.9 L304.2 276.9 A4.9 4.9 0 0 1 314.0 276.9 L327.3 276.9 L340.5 276.9 A4.9 4.9 0 0 0 350.4 276.9 L363.6 276.9 L376.9 276.9 A4.9 4.9 0 0 1 386.7 276.9 L400.0 276.9 M0 307.7 L13.3 307.7 A4.9 4.9 0 0 0 23.1 307.7 L36.4 307.7 L49.6 307.7 A4.9 4.9 0 0 1 59.5 307.7 L72.7 307.7 L86.0 307.7 A4.9 4.9 0 0 0 95.8 307.7 L109.1 307.7 L122.3 307.7 A4.9 4.9 0 0 1 132.2 307.7 L145.5 307.7 L158.7 307.7 A4.9 4.9 0 0 0 168.6 307.7 L181.8 307.7 L195.1 307.7 A4.9 4.9 0 0 1 204.9 307.7 L218.2 307.7 L231.4 307.7 A4.9 4.9 0 0 0 241.3 307.7 L254.5 307.7 L267.8 307.7 A4.9 4.9 0 0 1 277.7 307.7 L290.9 307.7 L304.2 307.7 A4.9 4.9 0 0 0 314.0 307.7 L327.3 307.7 L340.5 307.7 A4.9 4.9 0 0 1 350.4 307.7 L363.6 307.7 L376.9 307.7 A4.9 4.9 0 0 0 386.7 307.7 L400.0 307.7 M0 338.5 L13.3 338.5 A4.9 4.9 0 0 1 23.1 338.5 L36.4 338.5 L49.6 338.5 A4.9 4.9 0 0 0 59.5 338.5 L72.7 338.5 L86.0 338.5 A4.9 4.9 0 0 1 95.8 338.5 L109.1 338.5 L122.3 338.5 A4.9 4.9 0 0 0 132.2 338.5 L145.5 338.5 L158.7 338.5 A4.9 4.9 0 0 1 168.6 338.5 L181.8 338.5 L195.1 338.5 A4.9 4.9 0 0 0 204.9 338.5 L218.2 338.5 L231.4 338.5 A4.9 4.9 0 0 1 241.3 338.5 L254.5 338.5 L267.8 338.5 A4.9 4.9 0 0 0 277.7 338.5 L290.9 338.5 L304.2 338.5 A4.9 4.9 0 0 1 314.0 338.5 L327.3 338.5 L340.5 338.5 A4.9 4.9 0 0 0 350.4 338.5 L363.6 338.5 L376.9 338.5 A4.9 4.9 0 0 1 386.7 338.5 L400.0 338.5 M0 369.2 L13.3 369.2 A4.9 4.9 0 0 0 23.1 369.2 L36.4 369.2 L49.6 369.2 A4.9 4.9 0 0 1 59.5 369.2 L72.7 369.2 L86.0 369.2 A4.9 4.9 0 0 0 95.8 369.2 L109.1 369.2 L122.3 369.2 A4.9 4.9 0 0 1 132.2 369.2 L145.5 369.2 L158.7 369.2 A4.9 4.9 0 0 0 168.6 369.2 L181.8 369.2 L195.1 369.2 A4.9 4.9 0 0 1 204.9 369.2 L218.2 369.2 L231.4 369.2 A4.9 4.9 0 0 0 241.3 369.2 L254.5 369.2 L267.8 369.2 A4.9 4.9 0 0 1 277.7 369.2 L290.9 369.2 L304.2 369.2 A4.9 4.9 0 0 0 314.0 369.2 L327.3 369.2 L340.5 369.2 A4.9 4.9 0 0 1 350.4 369.2 L363.6 369.2 L376.9 369.2 A4.9 4.9 0 0 0 386.7 369.2 L400.0 369.2 M36.4 0 L36.4 10.5 A4.9 4.9 0 0 0 36.4 20.3 L36.4 30.8 L36.4 41.2 A4.9 4.9 0 0 1 36.4 51.1 L36.4 61.5 L36.4 72.0 A4.9 4.9 0 0 0 36.4 81.8 L36.4 92.3 L36.4 102.8 A4.9 4.9 0 0 1 36.4 112.6 L36.4 123.1 L36.4 133.5 A4.9 4.9 0 0 0 36.4 143.4 L36.4 153.8 L36.4 164.3 A4.9 4.9 0 0 1 36.4 174.2 L36.4 184.6 L36.4 195.1 A4.9 4.9 0 0 0 36.4 204.9 L36.4 215.4 L36.4 225.8 A4.9 4.9 0 0 1 36.4 235.7 L36.4 246.2 L36.4 256.6 A4.9 4.9 0 0 0 36.4 266.5 L36.4 276.9 L36.4 287.4 A4.9 4.9 0 0 1 36.4 297.2 L36.4 307.7 L36.4 318.2 A4.9 4.9 0 0 0 36.4 328.0 L36.4 338.5 L36.4 348.9 A4.9 4.9 0 0 1 36.4 358.8 L36.4 369.2 L36.4 379.7 A4.9 4.9 0 0 0 36.4 389.5 L36.4 400.0 M72.7 0 L72.7 10.5 A4.9 4.9 0 0 1 72.7 20.3 L72.7 30.8 L72.7 41.2 A4.9 4.9 0 0 0 72.7 51.1 L72.7 61.5 L72.7 72.0 A4.9 4.9 0 0 1 72.7 81.8 L72.7 92.3 L72.7 102.8 A4.9 4.9 0 0 0 72.7 112.6 L72.7 123.1 L72.7 133.5 A4.9 4.9 0 0 1 72.7 143.4 L72.7 153.8 L72.7 164.3 A4.9 4.9 0 0 0 72.7 174.2 L72.7 184.6 L72.7 195.1 A4.9 4.9 0 0 1 72.7 204.9 L72.7 215.4 L72.7 225.8 A4.9 4.9 0 0 0 72.7 235.7 L72.7 246.2 L72.7 256.6 A4.9 4.9 0 0 1 72.7 266.5 L72.7 276.9 L72.7 287.4 A4.9 4.9 0 0 0 72.7 297.2 L72.7 307.7 L72.7 318.2 A4.9 4.9 0 0 1 72.7 328.0 L72.7 338.5 L72.7 348.9 A4.9 4.9 0 0 0 72.7 358.8 L72.7 369.2 L72.7 379.7 A4.9 4.9 0 0 1 72.7 389.5 L72.7 400.0 M109.1 0 L109.1 10.5 A4.9 4.9 0 0 0 109.1 20.3 L109.1 30.8 L109.1 41.2 A4.9 4.9 0 0 1 109.1 51.1 L109.1 61.5 L109.1 72.0 A4.9 4.9 0 0 0 109.1 81.8 L109.1 92.3 L109.1 102.8 A4.9 4.9 0 0 1 109.1 112.6 L109.1 123.1 L109.1 133.5 A4.9 4.9 0 0 0 109.1 143.4 L109.1 153.8 L109.1 164.3 A4.9 4.9 0 0 1 109.1 174.2 L109.1 184.6 L109.1 195.1 A4.9 4.9 0 0 0 109.1 204.9 L109.1 215.4 L109.1 225.8 A4.9 4.9 0 0 1 109.1 235.7 L109.1 246.2 L109.1 256.6 A4.9 4.9 0 0 0 109.1 266.5 L109.1 276.9 L109.1 287.4 A4.9 4.9 0 0 1 109.1 297.2 L109.1 307.7 L109.1 318.2 A4.9 4.9 0 0 0 109.1 328.0 L109.1 338.5 L109.1 348.9 A4.9 4.9 0 0 1 109.1 358.8 L109.1 369.2 L109.1 379.7 A4.9 4.9 0 0 0 109.1 389.5 L109.1 400.0 M145.5 0 L145.5 10.5 A4.9 4.9 0 0 1 145.5 20.3 L145.5 30.8 L145.5 41.2 A4.9 4.9 0 0 0 145.5 51.1 L145.5 61.5 L145.5 72.0 A4.9 4.9 0 0 1 145.5 81.8 L145.5 92.3 L145.5 102.8 A4.9 4.9 0 0 0 145.5 112.6 L145.5 123.1 L145.5 133.5 A4.9 4.9 0 0 1 145.5 143.4 L145.5 153.8 L145.5 164.3 A4.9 4.9 0 0 0 145.5 174.2 L145.5 184.6 L145.5 195.1 A4.9 4.9 0 0 1 145.5 204.9 L145.5 215.4 L145.5 225.8 A4.9 4.9 0 0 0 145.5 235.7 L145.5 246.2 L145.5 256.6 A4.9 4.9 0 0 1 145.5 266.5 L145.5 276.9 L145.5 287.4 A4.9 4.9 0 0 0 145.5 297.2 L145.5 307.7 L145.5 318.2 A4.9 4.9 0 0 1 145.5 328.0 L145.5 338.5 L145.5 348.9 A4.9 4.9 0 0 0 145.5 358.8 L145.5 369.2 L145.5 379.7 A4.9 4.9 0 0 1 145.5 389.5 L145.5 400.0 M181.8 0 L181.8 10.5 A4.9 4.9 0 0 0 181.8 20.3 L181.8 30.8 L181.8 41.2 A4.9 4.9 0 0 1 181.8 51.1 L181.8 61.5 L181.8 72.0 A4.9 4.9 0 0 0 181.8 81.8 L181.8 92.3 L181.8 102.8 A4.9 4.9 0 0 1 181.8 112.6 L181.8 123.1 L181.8 133.5 A4.9 4.9 0 0 0 181.8 143.4 L181.8 153.8 L181.8 164.3 A4.9 4.9 0 0 1 181.8 174.2 L181.8 184.6 L181.8 195.1 A4.9 4.9 0 0 0 181.8 204.9 L181.8 215.4 L181.8 225.8 A4.9 4.9 0 0 1 181.8 235.7 L181.8 246.2 L181.8 256.6 A4.9 4.9 0 0 0 181.8 266.5 L181.8 276.9 L181.8 287.4 A4.9 4.9 0 0 1 181.8 297.2 L181.8 307.7 L181.8 318.2 A4.9 4.9 0 0 0 181.8 328.0 L181.8 338.5 L181.8 348.9 A4.9 4.9 0 0 1 181.8 358.8 L181.8 369.2 L181.8 379.7 A4.9 4.9 0 0 0 181.8 389.5 L181.8 400.0 M218.2 0 L218.2 10.5 A4.9 4.9 0 0 1 218.2 20.3 L218.2 30.8 L218.2 41.2 A4.9 4.9 0 0 0 218.2 51.1 L218.2 61.5 L218.2 72.0 A4.9 4.9 0 0 1 218.2 81.8 L218.2 92.3 L218.2 102.8 A4.9 4.9 0 0 0 218.2 112.6 L218.2 123.1 L218.2 133.5 A4.9 4.9 0 0 1 218.2 143.4 L218.2 153.8 L218.2 164.3 A4.9 4.9 0 0 0 218.2 174.2 L218.2 184.6 L218.2 195.1 A4.9 4.9 0 0 1 218.2 204.9 L218.2 215.4 L218.2 225.8 A4.9 4.9 0 0 0 218.2 235.7 L218.2 246.2 L218.2 256.6 A4.9 4.9 0 0 1 218.2 266.5 L218.2 276.9 L218.2 287.4 A4.9 4.9 0 0 0 218.2 297.2 L218.2 307.7 L218.2 318.2 A4.9 4.9 0 0 1 218.2 328.0 L218.2 338.5 L218.2 348.9 A4.9 4.9 0 0 0 218.2 358.8 L218.2 369.2 L218.2 379.7 A4.9 4.9 0 0 1 218.2 389.5 L218.2 400.0 M254.5 0 L254.5 10.5 A4.9 4.9 0 0 0 254.5 20.3 L254.5 30.8 L254.5 41.2 A4.9 4.9 0 0 1 254.5 51.1 L254.5 61.5 L254.5 72.0 A4.9 4.9 0 0 0 254.5 81.8 L254.5 92.3 L254.5 102.8 A4.9 4.9 0 0 1 254.5 112.6 L254.5 123.1 L254.5 133.5 A4.9 4.9 0 0 0 254.5 143.4 L254.5 153.8 L254.5 164.3 A4.9 4.9 0 0 1 254.5 174.2 L254.5 184.6 L254.5 195.1 A4.9 4.9 0 0 0 254.5 204.9 L254.5 215.4 L254.5 225.8 A4.9 4.9 0 0 1 254.5 235.7 L254.5 246.2 L254.5 256.6 A4.9 4.9 0 0 0 254.5 266.5 L254.5 276.9 L254.5 287.4 A4.9 4.9 0 0 1 254.5 297.2 L254.5 307.7 L254.5 318.2 A4.9 4.9 0 0 0 254.5 328.0 L254.5 338.5 L254.5 348.9 A4.9 4.9 0 0 1 254.5 358.8 L254.5 369.2 L254.5 379.7 A4.9 4.9 0 0 0 254.5 389.5 L254.5 400.0 M290.9 0 L290.9 10.5 A4.9 4.9 0 0 1 290.9 20.3 L290.9 30.8 L290.9 41.2 A4.9 4.9 0 0 0 290.9 51.1 L290.9 61.5 L290.9 72.0 A4.9 4.9 0 0 1 290.9 81.8 L290.9 92.3 L290.9 102.8 A4.9 4.9 0 0 0 290.9 112.6 L290.9 123.1 L290.9 133.5 A4.9 4.9 0 0 1 290.9 143.4 L290.9 153.8 L290.9 164.3 A4.9 4.9 0 0 0 290.9 174.2 L290.9 184.6 L290.9 195.1 A4.9 4.9 0 0 1 290.9 204.9 L290.9 215.4 L290.9 225.8 A4.9 4.9 0 0 0 290.9 235.7 L290.9 246.2 L290.9 256.6 A4.9 4.9 0 0 1 290.9 266.5 L290.9 276.9 L290.9 287.4 A4.9 4.9 0 0 0 290.9 297.2 L290.9 307.7 L290.9 318.2 A4.9 4.9 0 0 1 290.9 328.0 L290.9 338.5 L290.9 348.9 A4.9 4.9 0 0 0 290.9 358.8 L290.9 369.2 L290.9 379.7 A4.9 4.9 0 0 1 290.9 389.5 L290.9 400.0 M327.3 0 L327.3 10.5 A4.9 4.9 0 0 0 327.3 20.3 L327.3 30.8 L327.3 41.2 A4.9 4.9 0 0 1 327.3 51.1 L327.3 61.5 L327.3 72.0 A4.9 4.9 0 0 0 327.3 81.8 L327.3 92.3 L327.3 102.8 A4.9 4.9 0 0 1 327.3 112.6 L327.3 123.1 L327.3 133.5 A4.9 4.9 0 0 0 327.3 143.4 L327.3 153.8 L327.3 164.3 A4.9 4.9 0 0 1 327.3 174.2 L327.3 184.6 L327.3 195.1 A4.9 4.9 0 0 0 327.3 204.9 L327.3 215.4 L327.3 225.8 A4.9 4.9 0 0 1 327.3 235.7 L327.3 246.2 L327.3 256.6 A4.9 4.9 0 0 0 327.3 266.5 L327.3 276.9 L327.3 287.4 A4.9 4.9 0 0 1 327.3 297.2 L327.3 307.7 L327.3 318.2 A4.9 4.9 0 0 0 327.3 328.0 L327.3 338.5 L327.3 348.9 A4.9 4.9 0 0 1 327.3 358.8 L327.3 369.2 L327.3 379.7 A4.9 4.9 0 0 0 327.3 389.5 L327.3 400.0 M363.6 0 L363.6 10.5 A4.9 4.9 0 0 1 363.6 20.3 L363.6 30.8 L363.6 41.2 A4.9 4.9 0 0 0 363.6 51.1 L363.6 61.5 L363.6 72.0 A4.9 4.9 0 0 1 363.6 81.8 L363.6 92.3 L363.6 102.8 A4.9 4.9 0 0 0 363.6 112.6 L363.6 123.1 L363.6 133.5 A4.9 4.9 0 0 1 363.6 143.4 L363.6 153.8 L363.6 164.3 A4.9 4.9 0 0 0 363.6 174.2 L363.6 184.6 L363.6 195.1 A4.9 4.9 0 0 1 363.6 204.9 L363.6 215.4 L363.6 225.8 A4.9 4.9 0 0 0 363.6 235.7 L363.6 246.2 L363.6 256.6 A4.9 4.9 0 0 1 363.6 266.5 L363.6 276.9 L363.6 287.4 A4.9 4.9 0 0 0 363.6 297.2 L363.6 307.7 L363.6 318.2 A4.9 4.9 0 0 1 363.6 328.0 L363.6 338.5 L363.6 348.9 A4.9 4.9 0 0 0 363.6 358.8 L363.6 369.2 L363.6 379.7 A4.9 4.9 0 0 1 363.6 389.5 L363.6 400.0 "/>
+    </svg>
+  </div>
+
+  <div class="controls">
+    <div class="labels"><span>Finished image</span><span>Cut pattern</span></div>
+    <input type="range" id="slider" min="0" max="100" value="0">
+    <div class="pct"><span id="pct">0</span>% revealed</div>
+  </div>
+
+  <div class="row">
+    <button id="peek">Hold to compare</button>
+    <button id="reset">Reset</button>
+  </div>
+
+  <div class="meta">
+    Scanned from your <b>Paheli</b> box · This guide is private to your puzzle.<br>
+    Drag the slider — or swipe up/down on the image — to fade between the
+    finished picture and the laser-cut piece layout.
+  </div>
+</div>
+<script>
+  var cut=document.getElementById('cutLayer'),slider=document.getElementById('slider'),
+      pct=document.getElementById('pct'),hint=document.getElementById('hint'),stage=document.getElementById('stage');
+  var val=0,held=null;
+  function phraseFor(v){return v<50?'Mischief managed.':'I solemnly swear that I am up to no good.';}
+  function renderWords(text){var parts=text.split(' '),html='';for(var i=0;i<parts.length;i++){html+='<span class="w" style="animation-delay:'+(i*0.09).toFixed(2)+'s">'+parts[i]+'</span> ';}hint.innerHTML=html;}
+  var currentPhrase=phraseFor(0);renderWords(currentPhrase);
+  function setPhrase(v){var p=phraseFor(v);if(p===currentPhrase)return;currentPhrase=p;clearTimeout(hint._t);hint.classList.add('ink-out');hint._t=setTimeout(function(){hint.classList.remove('ink-out');renderWords(p);},320);}
+  function setReveal(v){val=Math.max(0,Math.min(100,v));cut.style.opacity=(val/100).toFixed(3);slider.value=val;pct.textContent=Math.round(val);setPhrase(val);}
+  slider.addEventListener('input',function(e){setReveal(+e.target.value);});
+  stage.addEventListener('wheel',function(e){e.preventDefault();setReveal(val+(e.deltaY>0?4:-4));},{passive:false});
+  var startY=null,startVal=0;
+  stage.addEventListener('pointerdown',function(e){startY=e.clientY;startVal=val;stage.setPointerCapture(e.pointerId);});
+  stage.addEventListener('pointermove',function(e){if(startY===null)return;var dy=startY-e.clientY;setReveal(startVal+dy/2.2);});
+  stage.addEventListener('pointerup',function(){startY=null;});
+  stage.addEventListener('pointercancel',function(){startY=null;});
+  var peek=document.getElementById('peek');
+  peek.addEventListener('pointerdown',function(){held=val;setReveal(100);});
+  function peekOff(){if(held!==null){setReveal(held);held=null;}}
+  peek.addEventListener('pointerup',peekOff);peek.addEventListener('pointerleave',peekOff);
+  document.getElementById('reset').addEventListener('click',function(){setReveal(0);});
+  setReveal(0);
+</script>
+</body>
+</html>
