@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Paheli · Heaven Harmony — Puzzle Guide</title>
+<title>The Puzzler's Map · Heaven Harmony</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
@@ -12,25 +12,37 @@
   :root{--choc:#573425;--cream:#F5F0E8;--orange:#C4651A;--card:#FBF8F3;}
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   html,body{margin:0;padding:0;background:var(--choc);color:var(--cream);
-    font-family:'Georgia',ui-serif,serif;overscroll-behavior:none;}
-  .wrap{max-width:520px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;}
-  header{padding:18px 20px 6px;text-align:center;}
+    font-family:Georgia,ui-serif,serif;overscroll-behavior:none;}
+  .wrap{max-width:560px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;}
+  header{padding:16px 20px 4px;text-align:center;}
   header .kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--orange);opacity:.9;}
-  header h1{margin:4px 0 2px;font-size:22px;font-weight:600;}
-  header .sub{font-size:12px;opacity:.7;font-style:italic;}
-  .hint{margin:2px 20px 6px;text-align:center;color:var(--cream);
-    font-family:'Pinyon Script',cursive;font-size:32px;line-height:1.02;
-    min-height:74px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;}
-  .hint.ink-out{animation:inkFade .34s ease-in forwards;}
-  @keyframes inkFade{40%{opacity:.6;}100%{opacity:0;filter:blur(7px);transform:translateY(-26px) scale(.97);}}
-  .hint .w{display:inline-block;margin:0 .12em;opacity:0;filter:blur(6px);animation:wordIn .5s ease forwards;}
+  header h1{margin:3px 0 2px;font-family:'Pinyon Script',cursive;font-weight:400;font-size:34px;line-height:1;}
+  header .sub{font-size:12px;opacity:.72;font-style:italic;}
+  .caption{margin:2px 20px 4px;text-align:center;color:var(--cream);
+    font-family:'Pinyon Script',cursive;font-size:30px;line-height:1.02;
+    min-height:66px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;}
+  .caption.ink-out{animation:inkFade .34s ease-in forwards;}
+  @keyframes inkFade{40%{opacity:.6;}100%{opacity:0;filter:blur(7px);transform:translateY(-24px) scale(.97);}}
+  .caption .w{display:inline-block;margin:0 .12em;opacity:0;filter:blur(6px);animation:wordIn .5s ease forwards;}
   @keyframes wordIn{0%{opacity:0;filter:blur(6px);transform:translateY(-5px) scale(1.15);}100%{opacity:1;filter:blur(0);transform:translateY(0) scale(1);}}
-  .stage{position:relative;margin:6px 16px 0;border-radius:16px;overflow:hidden;
-    aspect-ratio:1/1;background:#000;box-shadow:0 10px 30px rgba(0,0,0,.4);touch-action:none;cursor:ns-resize;}
-  .stage svg{position:absolute;inset:0;width:100%;height:100%;display:block;}
-  #artLayer{z-index:1;}
-  #cutLayer{z-index:2;opacity:0;transition:opacity .08s linear;}
-  .controls{padding:16px 22px 8px;}
+
+  .stage{position:relative;margin:4px 12px 0;border-radius:14px;overflow:hidden;background:#1c1c1c;
+    aspect-ratio:1203.0000/1800.0000;max-height:64vh;touch-action:none;cursor:grab;
+    box-shadow:0 10px 30px rgba(0,0,0,.45);}
+  .stage:active{cursor:grabbing;}
+  #viewport{position:absolute;inset:0;transform-origin:0 0;will-change:transform;}
+  #art{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;display:block;}
+  #cut{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .09s linear;
+    filter:drop-shadow(0 0 1px rgba(0,0,0,.92)) drop-shadow(0 0 1px rgba(0,0,0,.55));}
+  #cut svg{width:100%;height:100%;display:block;}
+  .vhint{position:absolute;z-index:5;left:0;right:0;bottom:10px;text-align:center;
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:0 14px;
+    text-shadow:0 1px 5px rgba(0,0,0,.85);pointer-events:none;transition:opacity .6s;}
+  .zbadge{position:absolute;z-index:5;top:8px;right:10px;font-size:11px;color:#fff;
+    background:rgba(20,10,4,.5);border-radius:12px;padding:3px 9px;pointer-events:none;
+    opacity:0;transition:opacity .3s;}
+
+  .controls{padding:14px 22px 6px;}
   .labels{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-bottom:6px;}
   input[type=range]{-webkit-appearance:none;width:100%;height:34px;background:transparent;}
   input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:6px;background:linear-gradient(90deg,var(--orange),var(--cream));}
@@ -41,78 +53,120 @@
   .row{display:flex;gap:10px;padding:8px 22px 4px;}
   .row button{flex:1;padding:11px;border-radius:10px;border:1px solid rgba(245,240,232,.25);background:transparent;color:var(--cream);font-family:inherit;font-size:13px;cursor:pointer;}
   .row button:active{background:rgba(245,240,232,.12);}
-  .meta{padding:14px 22px 26px;font-size:12px;opacity:.6;text-align:center;line-height:1.6;}
+  .meta{padding:12px 22px 26px;font-size:12px;opacity:.6;text-align:center;line-height:1.6;}
   .meta b{color:var(--orange);font-weight:600;}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="kicker">पहेली · Paheli</div>
-    <h1>Your Puzzle Guide</h1>
-    <div class="sub">Heaven Harmony · 147 pieces · Aanchal Gupta</div>
+    <div class="kicker">&#2346;&#2361;&#2375;&#2354;&#2368; &#183; PAHELI</div>
+    <h1>The Puzzler's Map</h1>
+    <div class="sub">Heaven Harmony &#183; 147 pieces &#183; Aanchal Gupta</div>
   </header>
 
-  <div class="hint" id="hint">Mischief managed.</div>
+  <div class="caption" id="caption">Mischief managed.</div>
 
   <div class="stage" id="stage">
-    <!-- FINISHED ARTWORK — replace this whole SVG with the real puzzle art -->
-    <svg id="artLayer" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
-<defs><linearGradient id="fsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7D0B0"/><stop offset="1" stop-color="#8FB4CE"/></linearGradient></defs>
-<rect width="400" height="400" fill="url(#fsky)"/>
-<path d="M40 250 L120 90 L200 250 Z" fill="#6E8AA6"/><path d="M150 260 L240 120 L330 260 Z" fill="#587292"/>
-<circle cx="300" cy="120" r="44" fill="#4E8C6A"/><rect x="292" y="150" width="16" height="120" fill="#5b7d52"/>
-<g fill="#C77CA0"><circle cx="70" cy="330" r="16"/><circle cx="110" cy="345" r="12"/></g>
-<g fill="#E0A9C4"><ellipse cx="180" cy="330" rx="14" ry="22"/><ellipse cx="215" cy="340" rx="12" ry="18"/></g>
-<rect y="360" width="400" height="40" fill="#3f6f7a"/>
-    </svg>
-    <!-- CUT PATTERN — replace this whole SVG with your real cut-pattern SVG (lines on transparent) -->
-    <svg id="cutLayer" viewBox="0 0 400 400" preserveAspectRatio="none">
-      <rect width="400" height="400" fill="rgba(20,10,4,0.16)"/>
-      <path fill="none" stroke="#FBF8F3" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"
-            style="filter:drop-shadow(0 0 1px rgba(0,0,0,.6))" d="M0 0 H400 V400 H0 Z M0 33.3 L11.3 33.3 A5.3 5.3 0 0 1 22.0 33.3 L33.3 33.3 L44.7 33.3 A5.3 5.3 0 0 0 55.3 33.3 L66.7 33.3 L78.0 33.3 A5.3 5.3 0 0 1 88.7 33.3 L100.0 33.3 L111.3 33.3 A5.3 5.3 0 0 0 122.0 33.3 L133.3 33.3 L144.7 33.3 A5.3 5.3 0 0 1 155.3 33.3 L166.7 33.3 L178.0 33.3 A5.3 5.3 0 0 0 188.7 33.3 L200.0 33.3 L211.3 33.3 A5.3 5.3 0 0 1 222.0 33.3 L233.3 33.3 L244.7 33.3 A5.3 5.3 0 0 0 255.3 33.3 L266.7 33.3 L278.0 33.3 A5.3 5.3 0 0 1 288.7 33.3 L300.0 33.3 L311.3 33.3 A5.3 5.3 0 0 0 322.0 33.3 L333.3 33.3 L344.7 33.3 A5.3 5.3 0 0 1 355.3 33.3 L366.7 33.3 L378.0 33.3 A5.3 5.3 0 0 0 388.7 33.3 L400.0 33.3 M0 66.7 L11.3 66.7 A5.3 5.3 0 0 0 22.0 66.7 L33.3 66.7 L44.7 66.7 A5.3 5.3 0 0 1 55.3 66.7 L66.7 66.7 L78.0 66.7 A5.3 5.3 0 0 0 88.7 66.7 L100.0 66.7 L111.3 66.7 A5.3 5.3 0 0 1 122.0 66.7 L133.3 66.7 L144.7 66.7 A5.3 5.3 0 0 0 155.3 66.7 L166.7 66.7 L178.0 66.7 A5.3 5.3 0 0 1 188.7 66.7 L200.0 66.7 L211.3 66.7 A5.3 5.3 0 0 0 222.0 66.7 L233.3 66.7 L244.7 66.7 A5.3 5.3 0 0 1 255.3 66.7 L266.7 66.7 L278.0 66.7 A5.3 5.3 0 0 0 288.7 66.7 L300.0 66.7 L311.3 66.7 A5.3 5.3 0 0 1 322.0 66.7 L333.3 66.7 L344.7 66.7 A5.3 5.3 0 0 0 355.3 66.7 L366.7 66.7 L378.0 66.7 A5.3 5.3 0 0 1 388.7 66.7 L400.0 66.7 M0 100.0 L11.3 100.0 A5.3 5.3 0 0 1 22.0 100.0 L33.3 100.0 L44.7 100.0 A5.3 5.3 0 0 0 55.3 100.0 L66.7 100.0 L78.0 100.0 A5.3 5.3 0 0 1 88.7 100.0 L100.0 100.0 L111.3 100.0 A5.3 5.3 0 0 0 122.0 100.0 L133.3 100.0 L144.7 100.0 A5.3 5.3 0 0 1 155.3 100.0 L166.7 100.0 L178.0 100.0 A5.3 5.3 0 0 0 188.7 100.0 L200.0 100.0 L211.3 100.0 A5.3 5.3 0 0 1 222.0 100.0 L233.3 100.0 L244.7 100.0 A5.3 5.3 0 0 0 255.3 100.0 L266.7 100.0 L278.0 100.0 A5.3 5.3 0 0 1 288.7 100.0 L300.0 100.0 L311.3 100.0 A5.3 5.3 0 0 0 322.0 100.0 L333.3 100.0 L344.7 100.0 A5.3 5.3 0 0 1 355.3 100.0 L366.7 100.0 L378.0 100.0 A5.3 5.3 0 0 0 388.7 100.0 L400.0 100.0 M0 133.3 L11.3 133.3 A5.3 5.3 0 0 0 22.0 133.3 L33.3 133.3 L44.7 133.3 A5.3 5.3 0 0 1 55.3 133.3 L66.7 133.3 L78.0 133.3 A5.3 5.3 0 0 0 88.7 133.3 L100.0 133.3 L111.3 133.3 A5.3 5.3 0 0 1 122.0 133.3 L133.3 133.3 L144.7 133.3 A5.3 5.3 0 0 0 155.3 133.3 L166.7 133.3 L178.0 133.3 A5.3 5.3 0 0 1 188.7 133.3 L200.0 133.3 L211.3 133.3 A5.3 5.3 0 0 0 222.0 133.3 L233.3 133.3 L244.7 133.3 A5.3 5.3 0 0 1 255.3 133.3 L266.7 133.3 L278.0 133.3 A5.3 5.3 0 0 0 288.7 133.3 L300.0 133.3 L311.3 133.3 A5.3 5.3 0 0 1 322.0 133.3 L333.3 133.3 L344.7 133.3 A5.3 5.3 0 0 0 355.3 133.3 L366.7 133.3 L378.0 133.3 A5.3 5.3 0 0 1 388.7 133.3 L400.0 133.3 M0 166.7 L11.3 166.7 A5.3 5.3 0 0 1 22.0 166.7 L33.3 166.7 L44.7 166.7 A5.3 5.3 0 0 0 55.3 166.7 L66.7 166.7 L78.0 166.7 A5.3 5.3 0 0 1 88.7 166.7 L100.0 166.7 L111.3 166.7 A5.3 5.3 0 0 0 122.0 166.7 L133.3 166.7 L144.7 166.7 A5.3 5.3 0 0 1 155.3 166.7 L166.7 166.7 L178.0 166.7 A5.3 5.3 0 0 0 188.7 166.7 L200.0 166.7 L211.3 166.7 A5.3 5.3 0 0 1 222.0 166.7 L233.3 166.7 L244.7 166.7 A5.3 5.3 0 0 0 255.3 166.7 L266.7 166.7 L278.0 166.7 A5.3 5.3 0 0 1 288.7 166.7 L300.0 166.7 L311.3 166.7 A5.3 5.3 0 0 0 322.0 166.7 L333.3 166.7 L344.7 166.7 A5.3 5.3 0 0 1 355.3 166.7 L366.7 166.7 L378.0 166.7 A5.3 5.3 0 0 0 388.7 166.7 L400.0 166.7 M0 200.0 L11.3 200.0 A5.3 5.3 0 0 0 22.0 200.0 L33.3 200.0 L44.7 200.0 A5.3 5.3 0 0 1 55.3 200.0 L66.7 200.0 L78.0 200.0 A5.3 5.3 0 0 0 88.7 200.0 L100.0 200.0 L111.3 200.0 A5.3 5.3 0 0 1 122.0 200.0 L133.3 200.0 L144.7 200.0 A5.3 5.3 0 0 0 155.3 200.0 L166.7 200.0 L178.0 200.0 A5.3 5.3 0 0 1 188.7 200.0 L200.0 200.0 L211.3 200.0 A5.3 5.3 0 0 0 222.0 200.0 L233.3 200.0 L244.7 200.0 A5.3 5.3 0 0 1 255.3 200.0 L266.7 200.0 L278.0 200.0 A5.3 5.3 0 0 0 288.7 200.0 L300.0 200.0 L311.3 200.0 A5.3 5.3 0 0 1 322.0 200.0 L333.3 200.0 L344.7 200.0 A5.3 5.3 0 0 0 355.3 200.0 L366.7 200.0 L378.0 200.0 A5.3 5.3 0 0 1 388.7 200.0 L400.0 200.0 M0 233.3 L11.3 233.3 A5.3 5.3 0 0 1 22.0 233.3 L33.3 233.3 L44.7 233.3 A5.3 5.3 0 0 0 55.3 233.3 L66.7 233.3 L78.0 233.3 A5.3 5.3 0 0 1 88.7 233.3 L100.0 233.3 L111.3 233.3 A5.3 5.3 0 0 0 122.0 233.3 L133.3 233.3 L144.7 233.3 A5.3 5.3 0 0 1 155.3 233.3 L166.7 233.3 L178.0 233.3 A5.3 5.3 0 0 0 188.7 233.3 L200.0 233.3 L211.3 233.3 A5.3 5.3 0 0 1 222.0 233.3 L233.3 233.3 L244.7 233.3 A5.3 5.3 0 0 0 255.3 233.3 L266.7 233.3 L278.0 233.3 A5.3 5.3 0 0 1 288.7 233.3 L300.0 233.3 L311.3 233.3 A5.3 5.3 0 0 0 322.0 233.3 L333.3 233.3 L344.7 233.3 A5.3 5.3 0 0 1 355.3 233.3 L366.7 233.3 L378.0 233.3 A5.3 5.3 0 0 0 388.7 233.3 L400.0 233.3 M0 266.7 L11.3 266.7 A5.3 5.3 0 0 0 22.0 266.7 L33.3 266.7 L44.7 266.7 A5.3 5.3 0 0 1 55.3 266.7 L66.7 266.7 L78.0 266.7 A5.3 5.3 0 0 0 88.7 266.7 L100.0 266.7 L111.3 266.7 A5.3 5.3 0 0 1 122.0 266.7 L133.3 266.7 L144.7 266.7 A5.3 5.3 0 0 0 155.3 266.7 L166.7 266.7 L178.0 266.7 A5.3 5.3 0 0 1 188.7 266.7 L200.0 266.7 L211.3 266.7 A5.3 5.3 0 0 0 222.0 266.7 L233.3 266.7 L244.7 266.7 A5.3 5.3 0 0 1 255.3 266.7 L266.7 266.7 L278.0 266.7 A5.3 5.3 0 0 0 288.7 266.7 L300.0 266.7 L311.3 266.7 A5.3 5.3 0 0 1 322.0 266.7 L333.3 266.7 L344.7 266.7 A5.3 5.3 0 0 0 355.3 266.7 L366.7 266.7 L378.0 266.7 A5.3 5.3 0 0 1 388.7 266.7 L400.0 266.7 M0 300.0 L11.3 300.0 A5.3 5.3 0 0 1 22.0 300.0 L33.3 300.0 L44.7 300.0 A5.3 5.3 0 0 0 55.3 300.0 L66.7 300.0 L78.0 300.0 A5.3 5.3 0 0 1 88.7 300.0 L100.0 300.0 L111.3 300.0 A5.3 5.3 0 0 0 122.0 300.0 L133.3 300.0 L144.7 300.0 A5.3 5.3 0 0 1 155.3 300.0 L166.7 300.0 L178.0 300.0 A5.3 5.3 0 0 0 188.7 300.0 L200.0 300.0 L211.3 300.0 A5.3 5.3 0 0 1 222.0 300.0 L233.3 300.0 L244.7 300.0 A5.3 5.3 0 0 0 255.3 300.0 L266.7 300.0 L278.0 300.0 A5.3 5.3 0 0 1 288.7 300.0 L300.0 300.0 L311.3 300.0 A5.3 5.3 0 0 0 322.0 300.0 L333.3 300.0 L344.7 300.0 A5.3 5.3 0 0 1 355.3 300.0 L366.7 300.0 L378.0 300.0 A5.3 5.3 0 0 0 388.7 300.0 L400.0 300.0 M0 333.3 L11.3 333.3 A5.3 5.3 0 0 0 22.0 333.3 L33.3 333.3 L44.7 333.3 A5.3 5.3 0 0 1 55.3 333.3 L66.7 333.3 L78.0 333.3 A5.3 5.3 0 0 0 88.7 333.3 L100.0 333.3 L111.3 333.3 A5.3 5.3 0 0 1 122.0 333.3 L133.3 333.3 L144.7 333.3 A5.3 5.3 0 0 0 155.3 333.3 L166.7 333.3 L178.0 333.3 A5.3 5.3 0 0 1 188.7 333.3 L200.0 333.3 L211.3 333.3 A5.3 5.3 0 0 0 222.0 333.3 L233.3 333.3 L244.7 333.3 A5.3 5.3 0 0 1 255.3 333.3 L266.7 333.3 L278.0 333.3 A5.3 5.3 0 0 0 288.7 333.3 L300.0 333.3 L311.3 333.3 A5.3 5.3 0 0 1 322.0 333.3 L333.3 333.3 L344.7 333.3 A5.3 5.3 0 0 0 355.3 333.3 L366.7 333.3 L378.0 333.3 A5.3 5.3 0 0 1 388.7 333.3 L400.0 333.3 M0 366.7 L11.3 366.7 A5.3 5.3 0 0 1 22.0 366.7 L33.3 366.7 L44.7 366.7 A5.3 5.3 0 0 0 55.3 366.7 L66.7 366.7 L78.0 366.7 A5.3 5.3 0 0 1 88.7 366.7 L100.0 366.7 L111.3 366.7 A5.3 5.3 0 0 0 122.0 366.7 L133.3 366.7 L144.7 366.7 A5.3 5.3 0 0 1 155.3 366.7 L166.7 366.7 L178.0 366.7 A5.3 5.3 0 0 0 188.7 366.7 L200.0 366.7 L211.3 366.7 A5.3 5.3 0 0 1 222.0 366.7 L233.3 366.7 L244.7 366.7 A5.3 5.3 0 0 0 255.3 366.7 L266.7 366.7 L278.0 366.7 A5.3 5.3 0 0 1 288.7 366.7 L300.0 366.7 L311.3 366.7 A5.3 5.3 0 0 0 322.0 366.7 L333.3 366.7 L344.7 366.7 A5.3 5.3 0 0 1 355.3 366.7 L366.7 366.7 L378.0 366.7 A5.3 5.3 0 0 0 388.7 366.7 L400.0 366.7 M33.3 0 L33.3 11.3 A5.3 5.3 0 0 0 33.3 22.0 L33.3 33.3 L33.3 44.7 A5.3 5.3 0 0 1 33.3 55.3 L33.3 66.7 L33.3 78.0 A5.3 5.3 0 0 0 33.3 88.7 L33.3 100.0 L33.3 111.3 A5.3 5.3 0 0 1 33.3 122.0 L33.3 133.3 L33.3 144.7 A5.3 5.3 0 0 0 33.3 155.3 L33.3 166.7 L33.3 178.0 A5.3 5.3 0 0 1 33.3 188.7 L33.3 200.0 L33.3 211.3 A5.3 5.3 0 0 0 33.3 222.0 L33.3 233.3 L33.3 244.7 A5.3 5.3 0 0 1 33.3 255.3 L33.3 266.7 L33.3 278.0 A5.3 5.3 0 0 0 33.3 288.7 L33.3 300.0 L33.3 311.3 A5.3 5.3 0 0 1 33.3 322.0 L33.3 333.3 L33.3 344.7 A5.3 5.3 0 0 0 33.3 355.3 L33.3 366.7 L33.3 378.0 A5.3 5.3 0 0 1 33.3 388.7 L33.3 400.0 M66.7 0 L66.7 11.3 A5.3 5.3 0 0 1 66.7 22.0 L66.7 33.3 L66.7 44.7 A5.3 5.3 0 0 0 66.7 55.3 L66.7 66.7 L66.7 78.0 A5.3 5.3 0 0 1 66.7 88.7 L66.7 100.0 L66.7 111.3 A5.3 5.3 0 0 0 66.7 122.0 L66.7 133.3 L66.7 144.7 A5.3 5.3 0 0 1 66.7 155.3 L66.7 166.7 L66.7 178.0 A5.3 5.3 0 0 0 66.7 188.7 L66.7 200.0 L66.7 211.3 A5.3 5.3 0 0 1 66.7 222.0 L66.7 233.3 L66.7 244.7 A5.3 5.3 0 0 0 66.7 255.3 L66.7 266.7 L66.7 278.0 A5.3 5.3 0 0 1 66.7 288.7 L66.7 300.0 L66.7 311.3 A5.3 5.3 0 0 0 66.7 322.0 L66.7 333.3 L66.7 344.7 A5.3 5.3 0 0 1 66.7 355.3 L66.7 366.7 L66.7 378.0 A5.3 5.3 0 0 0 66.7 388.7 L66.7 400.0 M100.0 0 L100.0 11.3 A5.3 5.3 0 0 0 100.0 22.0 L100.0 33.3 L100.0 44.7 A5.3 5.3 0 0 1 100.0 55.3 L100.0 66.7 L100.0 78.0 A5.3 5.3 0 0 0 100.0 88.7 L100.0 100.0 L100.0 111.3 A5.3 5.3 0 0 1 100.0 122.0 L100.0 133.3 L100.0 144.7 A5.3 5.3 0 0 0 100.0 155.3 L100.0 166.7 L100.0 178.0 A5.3 5.3 0 0 1 100.0 188.7 L100.0 200.0 L100.0 211.3 A5.3 5.3 0 0 0 100.0 222.0 L100.0 233.3 L100.0 244.7 A5.3 5.3 0 0 1 100.0 255.3 L100.0 266.7 L100.0 278.0 A5.3 5.3 0 0 0 100.0 288.7 L100.0 300.0 L100.0 311.3 A5.3 5.3 0 0 1 100.0 322.0 L100.0 333.3 L100.0 344.7 A5.3 5.3 0 0 0 100.0 355.3 L100.0 366.7 L100.0 378.0 A5.3 5.3 0 0 1 100.0 388.7 L100.0 400.0 M133.3 0 L133.3 11.3 A5.3 5.3 0 0 1 133.3 22.0 L133.3 33.3 L133.3 44.7 A5.3 5.3 0 0 0 133.3 55.3 L133.3 66.7 L133.3 78.0 A5.3 5.3 0 0 1 133.3 88.7 L133.3 100.0 L133.3 111.3 A5.3 5.3 0 0 0 133.3 122.0 L133.3 133.3 L133.3 144.7 A5.3 5.3 0 0 1 133.3 155.3 L133.3 166.7 L133.3 178.0 A5.3 5.3 0 0 0 133.3 188.7 L133.3 200.0 L133.3 211.3 A5.3 5.3 0 0 1 133.3 222.0 L133.3 233.3 L133.3 244.7 A5.3 5.3 0 0 0 133.3 255.3 L133.3 266.7 L133.3 278.0 A5.3 5.3 0 0 1 133.3 288.7 L133.3 300.0 L133.3 311.3 A5.3 5.3 0 0 0 133.3 322.0 L133.3 333.3 L133.3 344.7 A5.3 5.3 0 0 1 133.3 355.3 L133.3 366.7 L133.3 378.0 A5.3 5.3 0 0 0 133.3 388.7 L133.3 400.0 M166.7 0 L166.7 11.3 A5.3 5.3 0 0 0 166.7 22.0 L166.7 33.3 L166.7 44.7 A5.3 5.3 0 0 1 166.7 55.3 L166.7 66.7 L166.7 78.0 A5.3 5.3 0 0 0 166.7 88.7 L166.7 100.0 L166.7 111.3 A5.3 5.3 0 0 1 166.7 122.0 L166.7 133.3 L166.7 144.7 A5.3 5.3 0 0 0 166.7 155.3 L166.7 166.7 L166.7 178.0 A5.3 5.3 0 0 1 166.7 188.7 L166.7 200.0 L166.7 211.3 A5.3 5.3 0 0 0 166.7 222.0 L166.7 233.3 L166.7 244.7 A5.3 5.3 0 0 1 166.7 255.3 L166.7 266.7 L166.7 278.0 A5.3 5.3 0 0 0 166.7 288.7 L166.7 300.0 L166.7 311.3 A5.3 5.3 0 0 1 166.7 322.0 L166.7 333.3 L166.7 344.7 A5.3 5.3 0 0 0 166.7 355.3 L166.7 366.7 L166.7 378.0 A5.3 5.3 0 0 1 166.7 388.7 L166.7 400.0 M200.0 0 L200.0 11.3 A5.3 5.3 0 0 1 200.0 22.0 L200.0 33.3 L200.0 44.7 A5.3 5.3 0 0 0 200.0 55.3 L200.0 66.7 L200.0 78.0 A5.3 5.3 0 0 1 200.0 88.7 L200.0 100.0 L200.0 111.3 A5.3 5.3 0 0 0 200.0 122.0 L200.0 133.3 L200.0 144.7 A5.3 5.3 0 0 1 200.0 155.3 L200.0 166.7 L200.0 178.0 A5.3 5.3 0 0 0 200.0 188.7 L200.0 200.0 L200.0 211.3 A5.3 5.3 0 0 1 200.0 222.0 L200.0 233.3 L200.0 244.7 A5.3 5.3 0 0 0 200.0 255.3 L200.0 266.7 L200.0 278.0 A5.3 5.3 0 0 1 200.0 288.7 L200.0 300.0 L200.0 311.3 A5.3 5.3 0 0 0 200.0 322.0 L200.0 333.3 L200.0 344.7 A5.3 5.3 0 0 1 200.0 355.3 L200.0 366.7 L200.0 378.0 A5.3 5.3 0 0 0 200.0 388.7 L200.0 400.0 M233.3 0 L233.3 11.3 A5.3 5.3 0 0 0 233.3 22.0 L233.3 33.3 L233.3 44.7 A5.3 5.3 0 0 1 233.3 55.3 L233.3 66.7 L233.3 78.0 A5.3 5.3 0 0 0 233.3 88.7 L233.3 100.0 L233.3 111.3 A5.3 5.3 0 0 1 233.3 122.0 L233.3 133.3 L233.3 144.7 A5.3 5.3 0 0 0 233.3 155.3 L233.3 166.7 L233.3 178.0 A5.3 5.3 0 0 1 233.3 188.7 L233.3 200.0 L233.3 211.3 A5.3 5.3 0 0 0 233.3 222.0 L233.3 233.3 L233.3 244.7 A5.3 5.3 0 0 1 233.3 255.3 L233.3 266.7 L233.3 278.0 A5.3 5.3 0 0 0 233.3 288.7 L233.3 300.0 L233.3 311.3 A5.3 5.3 0 0 1 233.3 322.0 L233.3 333.3 L233.3 344.7 A5.3 5.3 0 0 0 233.3 355.3 L233.3 366.7 L233.3 378.0 A5.3 5.3 0 0 1 233.3 388.7 L233.3 400.0 M266.7 0 L266.7 11.3 A5.3 5.3 0 0 1 266.7 22.0 L266.7 33.3 L266.7 44.7 A5.3 5.3 0 0 0 266.7 55.3 L266.7 66.7 L266.7 78.0 A5.3 5.3 0 0 1 266.7 88.7 L266.7 100.0 L266.7 111.3 A5.3 5.3 0 0 0 266.7 122.0 L266.7 133.3 L266.7 144.7 A5.3 5.3 0 0 1 266.7 155.3 L266.7 166.7 L266.7 178.0 A5.3 5.3 0 0 0 266.7 188.7 L266.7 200.0 L266.7 211.3 A5.3 5.3 0 0 1 266.7 222.0 L266.7 233.3 L266.7 244.7 A5.3 5.3 0 0 0 266.7 255.3 L266.7 266.7 L266.7 278.0 A5.3 5.3 0 0 1 266.7 288.7 L266.7 300.0 L266.7 311.3 A5.3 5.3 0 0 0 266.7 322.0 L266.7 333.3 L266.7 344.7 A5.3 5.3 0 0 1 266.7 355.3 L266.7 366.7 L266.7 378.0 A5.3 5.3 0 0 0 266.7 388.7 L266.7 400.0 M300.0 0 L300.0 11.3 A5.3 5.3 0 0 0 300.0 22.0 L300.0 33.3 L300.0 44.7 A5.3 5.3 0 0 1 300.0 55.3 L300.0 66.7 L300.0 78.0 A5.3 5.3 0 0 0 300.0 88.7 L300.0 100.0 L300.0 111.3 A5.3 5.3 0 0 1 300.0 122.0 L300.0 133.3 L300.0 144.7 A5.3 5.3 0 0 0 300.0 155.3 L300.0 166.7 L300.0 178.0 A5.3 5.3 0 0 1 300.0 188.7 L300.0 200.0 L300.0 211.3 A5.3 5.3 0 0 0 300.0 222.0 L300.0 233.3 L300.0 244.7 A5.3 5.3 0 0 1 300.0 255.3 L300.0 266.7 L300.0 278.0 A5.3 5.3 0 0 0 300.0 288.7 L300.0 300.0 L300.0 311.3 A5.3 5.3 0 0 1 300.0 322.0 L300.0 333.3 L300.0 344.7 A5.3 5.3 0 0 0 300.0 355.3 L300.0 366.7 L300.0 378.0 A5.3 5.3 0 0 1 300.0 388.7 L300.0 400.0 M333.3 0 L333.3 11.3 A5.3 5.3 0 0 1 333.3 22.0 L333.3 33.3 L333.3 44.7 A5.3 5.3 0 0 0 333.3 55.3 L333.3 66.7 L333.3 78.0 A5.3 5.3 0 0 1 333.3 88.7 L333.3 100.0 L333.3 111.3 A5.3 5.3 0 0 0 333.3 122.0 L333.3 133.3 L333.3 144.7 A5.3 5.3 0 0 1 333.3 155.3 L333.3 166.7 L333.3 178.0 A5.3 5.3 0 0 0 333.3 188.7 L333.3 200.0 L333.3 211.3 A5.3 5.3 0 0 1 333.3 222.0 L333.3 233.3 L333.3 244.7 A5.3 5.3 0 0 0 333.3 255.3 L333.3 266.7 L333.3 278.0 A5.3 5.3 0 0 1 333.3 288.7 L333.3 300.0 L333.3 311.3 A5.3 5.3 0 0 0 333.3 322.0 L333.3 333.3 L333.3 344.7 A5.3 5.3 0 0 1 333.3 355.3 L333.3 366.7 L333.3 378.0 A5.3 5.3 0 0 0 333.3 388.7 L333.3 400.0 M366.7 0 L366.7 11.3 A5.3 5.3 0 0 0 366.7 22.0 L366.7 33.3 L366.7 44.7 A5.3 5.3 0 0 1 366.7 55.3 L366.7 66.7 L366.7 78.0 A5.3 5.3 0 0 0 366.7 88.7 L366.7 100.0 L366.7 111.3 A5.3 5.3 0 0 1 366.7 122.0 L366.7 133.3 L366.7 144.7 A5.3 5.3 0 0 0 366.7 155.3 L366.7 166.7 L366.7 178.0 A5.3 5.3 0 0 1 366.7 188.7 L366.7 200.0 L366.7 211.3 A5.3 5.3 0 0 0 366.7 222.0 L366.7 233.3 L366.7 244.7 A5.3 5.3 0 0 1 366.7 255.3 L366.7 266.7 L366.7 278.0 A5.3 5.3 0 0 0 366.7 288.7 L366.7 300.0 L366.7 311.3 A5.3 5.3 0 0 1 366.7 322.0 L366.7 333.3 L366.7 344.7 A5.3 5.3 0 0 0 366.7 355.3 L366.7 366.7 L366.7 378.0 A5.3 5.3 0 0 1 366.7 388.7 L366.7 400.0 "/>
-    </svg>
+    <div id="viewport">
+      <img id="art" src="finished.webp" alt="Heaven Harmony finished puzzle artwork">
+      <div id="cut"></div>
+    </div>
+    <div class="zbadge" id="zbadge">1.0&#215;</div>
+    <div class="vhint" id="vhint">Slide to reveal the cut &#183; pinch or double-tap to zoom</div>
   </div>
 
   <div class="controls">
-    <div class="labels"><span>Finished image</span><span>Cut pattern</span></div>
+    <div class="labels"><span>Finished picture</span><span>Cut pattern</span></div>
     <input type="range" id="slider" min="0" max="100" value="0">
     <div class="pct"><span id="pct">0</span>% revealed</div>
   </div>
 
   <div class="row">
     <button id="peek">Hold to compare</button>
-    <button id="reset">Reset</button>
+    <button id="resetview">Reset view</button>
   </div>
 
   <div class="meta">
-    Scanned from your <b>Paheli</b> box · This guide is private to your puzzle.<br>
-    Drag the slider — or swipe up/down on the image — to fade between the
-    finished picture and the laser-cut piece layout.
+    Scanned from your <b>Paheli</b> box &#183; private to your puzzle.<br>
+    Slide to fade between the finished picture and the laser-cut piece layout.
+    Pinch or double-tap the image to zoom in and find a piece.
   </div>
 </div>
+
 <script>
-  var cut=document.getElementById('cutLayer'),slider=document.getElementById('slider'),
-      pct=document.getElementById('pct'),hint=document.getElementById('hint'),stage=document.getElementById('stage');
-  var val=0,held=null;
+  var stage=document.getElementById('stage'), vp=document.getElementById('viewport'),
+      cut=document.getElementById('cut'), slider=document.getElementById('slider'),
+      pct=document.getElementById('pct'), caption=document.getElementById('caption'),
+      vhint=document.getElementById('vhint'), zbadge=document.getElementById('zbadge');
+
+  /* ---- load + inject the cut-pattern SVG ---- */
+  fetch('cut.svg').then(function(r){return r.text();}).then(function(t){
+    cut.innerHTML=t.replace(/<\?xml[^>]*\?>/,'');
+  }).catch(function(){});
+
+  /* ---- Marauder's Map caption ---- */
   function phraseFor(v){return v<50?'Mischief managed.':'I solemnly swear that I am up to no good.';}
-  function renderWords(text){var parts=text.split(' '),html='';for(var i=0;i<parts.length;i++){html+='<span class="w" style="animation-delay:'+(i*0.09).toFixed(2)+'s">'+parts[i]+'</span> ';}hint.innerHTML=html;}
+  function renderWords(text){var p=text.split(' '),h='';for(var i=0;i<p.length;i++){h+='<span class="w" style="animation-delay:'+(i*0.09).toFixed(2)+'s">'+p[i]+'</span> ';}caption.innerHTML=h;}
   var currentPhrase=phraseFor(0);renderWords(currentPhrase);
-  function setPhrase(v){var p=phraseFor(v);if(p===currentPhrase)return;currentPhrase=p;clearTimeout(hint._t);hint.classList.add('ink-out');hint._t=setTimeout(function(){hint.classList.remove('ink-out');renderWords(p);},320);}
-  function setReveal(v){val=Math.max(0,Math.min(100,v));cut.style.opacity=(val/100).toFixed(3);slider.value=val;pct.textContent=Math.round(val);setPhrase(val);}
+  function setPhrase(v){var p=phraseFor(v);if(p===currentPhrase)return;currentPhrase=p;clearTimeout(caption._t);caption.classList.add('ink-out');caption._t=setTimeout(function(){caption.classList.remove('ink-out');renderWords(p);},320);}
+
+  /* ---- reveal (crossfade) ---- */
+  var reveal=0, held=null;
+  function setReveal(v){reveal=Math.max(0,Math.min(100,v));cut.style.opacity=(reveal/100).toFixed(3);slider.value=reveal;pct.textContent=Math.round(reveal);setPhrase(reveal);}
   slider.addEventListener('input',function(e){setReveal(+e.target.value);});
-  stage.addEventListener('wheel',function(e){e.preventDefault();setReveal(val+(e.deltaY>0?4:-4));},{passive:false});
-  var startY=null,startVal=0;
-  stage.addEventListener('pointerdown',function(e){startY=e.clientY;startVal=val;stage.setPointerCapture(e.pointerId);});
-  stage.addEventListener('pointermove',function(e){if(startY===null)return;var dy=startY-e.clientY;setReveal(startVal+dy/2.2);});
-  stage.addEventListener('pointerup',function(){startY=null;});
-  stage.addEventListener('pointercancel',function(){startY=null;});
   var peek=document.getElementById('peek');
-  peek.addEventListener('pointerdown',function(){held=val;setReveal(100);});
+  peek.addEventListener('pointerdown',function(){held=reveal;setReveal(100);});
   function peekOff(){if(held!==null){setReveal(held);held=null;}}
   peek.addEventListener('pointerup',peekOff);peek.addEventListener('pointerleave',peekOff);
-  document.getElementById('reset').addEventListener('click',function(){setReveal(0);});
-  setReveal(0);
+
+  /* ---- zoom + pan ---- */
+  var scale=1, tx=0, ty=0, minS=1, maxS=6;
+  function apply(){vp.style.transform='translate('+tx.toFixed(2)+'px,'+ty.toFixed(2)+'px) scale('+scale.toFixed(4)+')';
+    zbadge.textContent=scale.toFixed(1)+'×';zbadge.style.opacity=(scale>1.02)?1:0;}
+  function clampScale(){scale=Math.max(minS,Math.min(maxS,scale));}
+  function clamp(){clampScale();var r=stage.getBoundingClientRect();
+    var minX=r.width-r.width*scale, minY=r.height-r.height*scale;
+    tx=Math.min(0,Math.max(minX,tx));ty=Math.min(0,Math.max(minY,ty));
+    if(scale<=1){tx=0;ty=0;}}
+  function zoomAt(cx,cy,ns){var r=stage.getBoundingClientRect();var px=cx-r.left,py=cy-r.top;
+    var ix=(px-tx)/scale, iy=(py-ty)/scale;scale=ns;clampScale();
+    tx=px-ix*scale;ty=py-iy*scale;clamp();apply();hideHint();}
+  function resetView(){scale=1;tx=0;ty=0;apply();}
+  document.getElementById('resetview').addEventListener('click',resetView);
+
+  var pts=new Map(), lastDist=null, lastTap=0, ltx=0, lty=0;
+  stage.addEventListener('pointerdown',function(e){stage.setPointerCapture(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY});});
+  stage.addEventListener('pointermove',function(e){
+    if(!pts.has(e.pointerId))return;
+    var prev=pts.get(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if(pts.size===1){
+      if(scale>1){tx+=e.clientX-prev.x;ty+=e.clientY-prev.y;clamp();apply();hideHint();}
+    }else if(pts.size>=2){
+      var a=Array.from(pts.values());
+      var dx=a[0].x-a[1].x, dy=a[0].y-a[1].y, dist=Math.hypot(dx,dy);
+      var mx=(a[0].x+a[1].x)/2, my=(a[0].y+a[1].y)/2;
+      if(lastDist!=null&&dist>0){zoomAt(mx,my,scale*(dist/lastDist));}
+      lastDist=dist;
+    }
+  });
+  function endPtr(e){pts.delete(e.pointerId);if(pts.size<2)lastDist=null;}
+  stage.addEventListener('pointerup',function(e){
+    var now=Date.now();
+    if(now-lastTap<300 && Math.abs(e.clientX-ltx)<28 && Math.abs(e.clientY-lty)<28 && pts.size<=1){
+      zoomAt(e.clientX,e.clientY, scale>1.2?1:2.6);lastTap=0;
+    }else{lastTap=now;ltx=e.clientX;lty=e.clientY;}
+    endPtr(e);
+  });
+  stage.addEventListener('pointercancel',endPtr);
+  stage.addEventListener('wheel',function(e){e.preventDefault();zoomAt(e.clientX,e.clientY,scale*(e.deltaY<0?1.15:0.87));},{passive:false});
+
+  /* ---- first-load hint ---- */
+  var hintGone=false;
+  function hideHint(){if(hintGone)return;hintGone=true;vhint.style.opacity=0;}
+  setTimeout(hideHint,4500);
+
+  setReveal(0);apply();
 </script>
 </body>
 </html>
