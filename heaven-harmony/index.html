@@ -34,9 +34,10 @@
   #art{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;display:block;
     transition:filter .14s linear, opacity .14s linear;}
   #cut{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .09s linear;
-    --cutstroke:#573425;--cutw:1.2px;
-    filter:drop-shadow(0 0 1px #FBF8F3) drop-shadow(0 0 1px #FBF8F3) drop-shadow(0 0 .6px rgba(251,248,243,.85));}
+    filter:drop-shadow(0 0 .7px rgba(251,248,243,.8));}
   #cut svg{width:100%;height:100%;display:block;}
+  #cut svg *{fill:none !important;stroke:#573425 !important;stroke-width:1.1px !important;
+    vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round;}
   .vhint{position:absolute;z-index:5;left:0;right:0;bottom:10px;text-align:center;
     font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:0 14px;
     text-shadow:0 1px 5px rgba(0,0,0,.85);pointer-events:none;transition:opacity .6s;}
@@ -104,7 +105,7 @@
       art=document.getElementById('art');
 
   /* ---- load + inject the cut-pattern SVG ---- */
-  fetch('cut.svg').then(function(r){return r.text();}).then(function(t){
+  fetch('cut.svg?v=2').then(function(r){return r.text();}).then(function(t){
     cut.innerHTML=t.replace(/<\?xml[^>]*\?>/,'');
   }).catch(function(){});
 
