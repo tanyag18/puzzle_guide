@@ -7,7 +7,7 @@
 <title>The Puzzler's Map · The White Tiger</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
   :root{--choc:#573425;--cream:#F5F0E8;--orange:#C4651A;--card:#FBF8F3;}
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -16,7 +16,8 @@
   .wrap{max-width:560px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;}
   header{padding:16px 20px 4px;text-align:center;}
   header .kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--orange);opacity:.9;}
-  header h1{margin:3px 0 2px;font-family:'Pinyon Script',cursive;font-weight:400;font-size:26px;line-height:1;}
+  header h1{margin:4px 0 4px;font-family:'Cormorant Garamond',serif;font-weight:600;font-style:normal;
+    font-size:34px;letter-spacing:.015em;line-height:1.05;}
   header .sub{font-size:12px;opacity:.72;font-style:italic;}
   .caption{margin:2px 20px 4px;text-align:center;color:var(--cream);
     font-family:'Pinyon Script',cursive;font-size:30px;line-height:1.02;
@@ -26,17 +27,18 @@
   .caption .w{display:inline-block;margin:0 .12em;opacity:0;filter:blur(6px);animation:wordIn .5s ease forwards;}
   @keyframes wordIn{0%{opacity:0;filter:blur(6px);transform:translateY(-5px) scale(1.15);}100%{opacity:1;filter:blur(0);transform:translateY(0) scale(1);}}
 
-  .stage{position:relative;margin:4px auto 0;border-radius:14px;overflow:hidden;background:#1c1c1c;
+  .stage{position:relative;margin:4px auto 0;border-radius:14px;overflow:hidden;background:#EDE4D3;
     aspect-ratio:1800.0000/1335.0000;width:calc(100% - 24px);touch-action:none;cursor:grab;
     box-shadow:0 10px 30px rgba(0,0,0,.45);}
   .stage:active{cursor:grabbing;}
   #viewport{position:absolute;inset:0;transform-origin:0 0;will-change:transform;}
   #art{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;display:block;
     transition:filter .14s linear, opacity .14s linear;}
+  #veil{position:absolute;inset:0;background:#FCFAF6;opacity:0;pointer-events:none;transition:opacity .14s linear;}
   #cut{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .09s linear;
-    filter:drop-shadow(0 0 .7px rgba(251,248,243,.8));}
+    filter:drop-shadow(0 0 .6px rgba(255,255,255,.55));}
   #cut svg{width:100%;height:100%;display:block;}
-  #cut svg *{fill:none !important;stroke:#573425 !important;stroke-width:1.1px !important;
+  #cut svg *{fill:none !important;stroke:#6b3a2a !important;stroke-width:1.3px !important;
     vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round;}
   .vhint{position:absolute;z-index:5;left:0;right:0;bottom:10px;text-align:center;
     font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:0 14px;
@@ -73,6 +75,7 @@
   <div class="stage" id="stage">
     <div id="viewport">
       <img id="art" src="finished.webp" alt="The White Tiger finished puzzle artwork">
+      <div id="veil"></div>
       <div id="cut"></div>
     </div>
     <div class="zbadge" id="zbadge">1.0&#215;</div>
@@ -102,10 +105,10 @@
       cut=document.getElementById('cut'), slider=document.getElementById('slider'),
       pct=document.getElementById('pct'), caption=document.getElementById('caption'),
       vhint=document.getElementById('vhint'), zbadge=document.getElementById('zbadge'),
-      art=document.getElementById('art');
+      art=document.getElementById('art'), veil=document.getElementById('veil');
 
   /* ---- load + inject the cut-pattern SVG ---- */
-  fetch('cut.svg?v=2').then(function(r){return r.text();}).then(function(t){
+  fetch('cut.svg?v=3').then(function(r){return r.text();}).then(function(t){
     cut.innerHTML=t.replace(/<\?xml[^>]*\?>/,'');
   }).catch(function(){});
 
@@ -119,8 +122,7 @@
   var reveal=0, held=null;
   function setReveal(v){reveal=Math.max(0,Math.min(100,v));var f=reveal/100;
     cut.style.opacity=f.toFixed(3);
-    art.style.filter='blur('+(f*2).toFixed(2)+'px)';
-    art.style.opacity=(1-f*0.28).toFixed(3);
+    art.style.opacity=(1-f*0.85).toFixed(3);
     slider.value=reveal;pct.textContent=Math.round(reveal);setPhrase(reveal);}
   slider.addEventListener('input',function(e){setReveal(+e.target.value);});
   var peek=document.getElementById('peek');
