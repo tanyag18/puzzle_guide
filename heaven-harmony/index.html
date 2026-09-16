@@ -60,6 +60,22 @@
   .row button:active{background:rgba(245,240,232,.12);}
   .meta{padding:12px 22px 26px;font-size:12px;opacity:.6;text-align:center;line-height:1.6;}
   .meta b{color:var(--orange);font-weight:600;}
+  .magicrow{display:flex;justify-content:center;padding:8px 22px 2px;}
+  .magicbtn{border:1px solid rgba(196,101,26,.55);background:linear-gradient(180deg,rgba(196,101,26,.18),rgba(196,101,26,.04));
+    color:var(--cream);font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;letter-spacing:.02em;
+    padding:11px 22px;border-radius:26px;cursor:pointer;transition:transform .15s,box-shadow .15s;}
+  .magicbtn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(196,101,26,.28);}
+  .magicbtn:active{transform:translateY(0);}
+  .magicbtn .spark{color:var(--orange);}
+  .modal{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:16px;}
+  .modal.open{display:flex;}
+  .modalbg{position:absolute;inset:0;background:rgba(20,10,4,.85);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);}
+  .modalinner{position:relative;z-index:1;max-width:96vw;display:flex;flex-direction:column;align-items:center;animation:pop .3s ease;}
+  @keyframes pop{from{transform:scale(.94);opacity:.3;}to{transform:scale(1);opacity:1;}}
+  .modalinner video{max-width:96vw;max-height:78vh;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.6);background:#000;display:block;}
+  .modalcap{margin-top:10px;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--cream);opacity:.85;font-size:16px;text-align:center;}
+  .modalclose{position:absolute;top:-16px;right:-8px;z-index:2;width:38px;height:38px;border-radius:50%;border:none;
+    background:var(--cream);color:var(--choc);font-size:16px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.45);}
 </style>
 </head>
 <body>
@@ -93,6 +109,17 @@
     <button id="resetview">Reset view</button>
   </div>
 
+  <div class="magicrow">
+    <button class="magicbtn" id="magicBtn"><span class="spark">&#10024;</span> Wanna see a magic?</button>
+  </div>
+  <div class="modal" id="magicModal">
+    <div class="modalbg" id="magicBg"></div>
+    <div class="modalinner">
+      <button class="modalclose" id="magicClose" aria-label="Close">&#10005;</button>
+      <video id="magicVideo" src="magic.mp4" playsinline controls loop preload="none"></video>
+      <div class="modalcap">The blossoms drift down &#10024;</div>
+    </div>
+  </div>
   <div class="meta">
     Scanned from your <b>Paheli</b> box &#183; private to your puzzle.<br>
     Slide to fade between the finished picture and the laser-cut piece layout.
@@ -175,6 +202,19 @@
   var hintGone=false;
   function hideHint(){if(hintGone)return;hintGone=true;vhint.style.opacity=0;}
   setTimeout(hideHint,4500);
+
+  /* ---- "wanna see a magic?" video ---- */
+  var mBtn=document.getElementById('magicBtn');
+  if(mBtn){
+    var mModal=document.getElementById('magicModal'),mVid=document.getElementById('magicVideo'),
+        mBg=document.getElementById('magicBg'),mClose=document.getElementById('magicClose');
+    function openMagic(){mModal.classList.add('open');try{mVid.currentTime=0;}catch(e){}var p=mVid.play();if(p&&p.catch)p.catch(function(){});}
+    function closeMagic(){mModal.classList.remove('open');mVid.pause();}
+    mBtn.addEventListener('click',openMagic);
+    mClose.addEventListener('click',closeMagic);
+    mBg.addEventListener('click',closeMagic);
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMagic();});
+  }
 
   setReveal(0);apply();
 </script>
